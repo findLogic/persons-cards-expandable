@@ -18,6 +18,6 @@ export default defineConfig({
     },
   },
   define: {
-    __API__: JSON.stringify('http://localhost:5000/api'),
+    __API__: JSON.stringify('https://persons-cards-server-production.up.railway.app/api'),
   },
 })
