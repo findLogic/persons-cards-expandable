@@ -9,7 +9,11 @@ import './PersonListFilter.scss'
 import { getCities } from '@/shared/api/cities'
 import { getCompanies } from '@/shared/api/companies'
 
-export const PersonListFilter = () => {
+interface PersonListFilterProps {
+  disabled?: boolean
+}
+
+export const PersonListFilter = ({ disabled }: PersonListFilterProps) => {
   const { data: cityOptions = [] } = useQuery({
     queryKey: ['cities'],
     queryFn: getCities,
@@ -27,6 +31,7 @@ export const PersonListFilter = () => {
   return (
     <div className="filter-panel">
       <AppSearchField
+        disabled={disabled}
         label={'Поиск'}
         placeholder="Введите запрос..."
         value={searchTerm}
@@ -34,12 +39,14 @@ export const PersonListFilter = () => {
       />
 
       <AppSelectMulti
+        disabled={disabled}
         label={'Город'}
         options={cityOptions}
         onChange={(selected) => dispatch(setSelectedCities([...selected]))}
         value={selectedCities}
       />
       <AppSelect
+        disabled={disabled}
         label={'Компания'}
         options={companyOptions}
         onChange={(selected) => dispatch(setCompany(selected))}

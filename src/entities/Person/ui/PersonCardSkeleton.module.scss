@@ -1,0 +1,60 @@
+.card {
+  background-color: var(--panel);
+  border: 1px solid var(--border-color);
+  border-radius: $radius-lg;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: var(--skeleton-bg);
+      @include skeleton-animation;
+    }
+
+    .headerText {
+      flex: 1;
+
+      .name {
+        height: 1.5rem;
+        width: 70%;
+        background-color: var(--skeleton-bg);
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+        @include skeleton-animation;
+      }
+
+      .email {
+        height: 1rem;
+        width: 90%;
+        background-color: var(--skeleton-bg);
+        border-radius: 4px;
+        @include skeleton-animation;
+      }
+    }
+  }
+
+  .details {
+    margin-top: 1rem;
+
+    .detailLine {
+      height: 1rem;
+      width: 100%;
+      background-color: var(--skeleton-bg);
+      border-radius: 4px;
+      margin: 0.5rem 0;
+      @include skeleton-animation;
+
+      &:last-child {
+        width: 85%;
+      }
+    }
+  }
+}

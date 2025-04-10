@@ -1,3 +1,4 @@
+import { customStyles } from '@/shared/lib/customStyleSelectReact'
 import Select from 'react-select'
 
 interface OptionType {
@@ -8,12 +9,20 @@ interface OptionType {
 interface AppSelectProps {
   label: string
   options: OptionType[]
+  disabled?: boolean
   placeeholder?: string
   value: OptionType | null
   onChange: (value: OptionType | null) => void
 }
 
-export const AppSelect = ({ options, value, placeeholder, onChange, ...rest }: AppSelectProps) => {
+export const AppSelect = ({
+  options,
+  value,
+  placeeholder,
+  disabled,
+  onChange,
+  ...rest
+}: AppSelectProps) => {
   const handleChange = (selectedOption: OptionType | null) => {
     onChange(selectedOption)
   }
@@ -23,6 +32,7 @@ export const AppSelect = ({ options, value, placeeholder, onChange, ...rest }: A
         Компания
       </label>
       <Select<OptionType>
+        isDisabled={disabled}
         id={'select'}
         options={options}
         value={value}
@@ -31,6 +41,7 @@ export const AppSelect = ({ options, value, placeeholder, onChange, ...rest }: A
         isClearable
         noOptionsMessage={() => 'Нет доступных вариантов'}
         classNamePrefix="react-select"
+        styles={customStyles}
         {...rest}
       />
     </div>

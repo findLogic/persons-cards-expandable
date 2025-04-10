@@ -3,13 +3,14 @@ import { AppLink } from '@/shared/ui/AppLink/AppLink'
 import { ThemeSwitcher } from '@/widgets/ThemeSwitcher'
 import { FC, memo } from 'react'
 import { useLocation } from 'react-router'
+import cls from './Navbar.module.scss'
 
 export const Navbar: FC = memo(function Navbar() {
   const { pathname } = useLocation()
 
   return (
-    <nav className="navbar">
-      <div className="navbar-links">
+    <nav className={cls.navbar}>
+      <div className={cls.links}>
         <AppLink to={routeConfig.main.path!} active={pathname === routeConfig.main.path}>
           Профили
         </AppLink>

@@ -1,8 +1,9 @@
 .filter-panel {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
   padding: 16px;
-  background: #f5f5f5;
+  background: var(--panel);
   border-radius: 8px;
   margin-bottom: 16px;
   flex-wrap: wrap;
@@ -10,6 +11,7 @@
   &__field {
     flex: 1;
     min-width: 200px;
+    width: 100%;
   }
 
   &__label {
@@ -19,11 +21,11 @@
   }
 
   &__search-input {
-    width: 100%;
+    width: calc(100% - 16px);
     padding: 8px;
     border-radius: 4px;
     border: 1px solid #ccc;
-    font-size: 14px;
+    font-size: 16px;
 
     &:focus {
       outline: none;
@@ -33,31 +35,31 @@
   }
 }
 
-// Кастомизация react-select
-.react-select-container {
-  font-size: 14px;
-}
+// // Кастомизация react-select
+// .react-select-container {
+//   font-size: 26px;
+// }
 
-.react-select__control {
-  min-height: 38px;
-  border-radius: 4px !important;
-}
+// .react-select__control {
+//   min-height: 38px;
+//   border-radius: 4px !important;
+// }
 
-.react-select__control--is-focused {
-  border-color: #2684ff !important;
-  box-shadow: 0 0 0 1px #2684ff !important;
-}
+// .react-select__control--is-focused {
+//   border-color: #2684ff !important;
+//   box-shadow: 0 0 0 1px #2684ff !important;
+// }
 
-.react-select__multi-value {
-  background-color: #e6f2ff;
-  border-radius: 2px;
-}
+// .react-select__multi-value {
+//   background-color: red;
+//   border-radius: 2px;
+// }
 
-.react-select__multi-value__label {
-  color: #0066cc;
-}
+// .react-select__multi-value__label {
+//   color: #0066cc;
+// }
 
-.react-select__multi-value__remove:hover {
-  background-color: #cce0ff;
-  color: #0066cc;
-}
+// .react-select__multi-value__remove:hover {
+//   background-color: #cce0ff;
+//   color: #0066cc;
+// }

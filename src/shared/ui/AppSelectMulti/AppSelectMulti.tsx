@@ -1,3 +1,4 @@
+import { customStyles } from '@/shared/lib/customStyleSelectReact'
 import { OptionType } from '@/shared/types/types'
 import Select, { MultiValue } from 'react-select'
 
@@ -5,6 +6,7 @@ interface AppSelectMultiProps {
   label: string
   options: OptionType[]
   value: OptionType[]
+  disabled?: boolean
   onChange: (selectedOptions: OptionType[]) => void
   placeholder?: string
 }
@@ -12,6 +14,7 @@ interface AppSelectMultiProps {
 export const AppSelectMulti = ({
   options,
   value,
+  disabled,
   onChange,
   placeholder,
   ...rest
@@ -27,6 +30,7 @@ export const AppSelectMulti = ({
       </label>
       <Select<OptionType, true>
         isMulti
+        isDisabled={disabled}
         id={'multi'}
         options={options}
         value={value}
@@ -35,26 +39,7 @@ export const AppSelectMulti = ({
         noOptionsMessage={() => 'Нет доступных вариантов'}
         classNamePrefix="react-select"
         styles={{
-          // menu: (provided) => ({
-          //   ...provided,
-          //   maxHeight: '100px',
-          //   overflow: 'auto',
-          // }),
-          // menuList: (provided) => ({
-          //   ...provided,
-          //   maxHeight: '60px',
-          //   padding: 0,
-          // }),
-          valueContainer: (provided) => ({
-            ...provided,
-            maxHeight: '75px',
-            overflow: 'auto',
-            flexWrap: 'nowrap',
-          }),
-          multiValue: (provided) => ({
-            ...provided,
-            maxWidth: '100%',
-          }),
+          ...customStyles,
         }}
         {...rest}
       />

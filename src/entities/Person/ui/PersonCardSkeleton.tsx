@@ -1,19 +1,19 @@
-import './PersonCardSkeleton.scss'
+import cls from './PersonCardSkeleton.module.scss'
 
 export const PersonCardSkeleton = () => {
   return (
-    <div className="person-card skeleton">
-      <div className="person-card-header">
-        <div className="person-card-avatar skeleton-box" />
-        <div className="skeleton-content">
-          <div className="skeleton-box skeleton-title" />
-          <div className="skeleton-box skeleton-text" />
+    <div className={cls.card}>
+      <div className={cls.header}>
+        <div className={cls.avatar} />
+        <div className={cls.headerText}>
+          <div className={cls.name} />
+          <div className={cls.email} />
         </div>
       </div>
-      <div className="person-card-details">
-        <div className="skeleton-box skeleton-text" />
-        <div className="skeleton-box skeleton-text" />
-        <div className="skeleton-box skeleton-text" />
+      <div className={cls.details}>
+        <div className={cls.detailLine} />
+        <div className={cls.detailLine} />
+        <div className={cls.detailLine} />
       </div>
     </div>
   )

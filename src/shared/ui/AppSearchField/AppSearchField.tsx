@@ -1,7 +1,10 @@
+import cls from './AppSearchField.module.scss'
+
 interface SearchFieldProps {
   label: string
   value: string
   placeholder?: string
+  disabled?: boolean
   onChange: (value: string) => void
 }
 
@@ -9,6 +12,7 @@ export const AppSearchField = ({
   label,
   value,
   placeholder,
+  disabled,
   onChange,
   ...rest
 }: SearchFieldProps) => {
@@ -22,12 +26,13 @@ export const AppSearchField = ({
         {label}
       </label>
       <input
+        disabled={disabled}
         id="search"
         type="text"
         placeholder={placeholder}
         value={value}
         onChange={handleSearchChange}
-        className="filter-panel__search-input"
+        className={cls.input}
         {...rest}
       />
     </div>

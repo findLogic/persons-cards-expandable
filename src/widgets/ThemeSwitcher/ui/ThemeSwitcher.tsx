@@ -3,6 +3,7 @@ import { ThemeContext } from '@/shared/lib/ThemeContext'
 import { useCallback, useContext } from 'react'
 import SunIcon from '@/shared/assets/icons/sun.svg?react'
 import MoonIcon from '@/shared/assets/icons/moon.svg?react'
+import cls from './ThemeSwitcher.module.scss'
 
 export const ThemeSwitcher = function ThemeSwitcher() {
   const { theme, setTheme } = useContext(ThemeContext)
@@ -17,14 +18,12 @@ export const ThemeSwitcher = function ThemeSwitcher() {
 
   return (
     <div
-      className="theme-toggle"
+      className={cls.themeToggler}
       data-theme={theme === Theme.LIGHT ? Theme.LIGHT : Theme.DARK}
       onClick={toggleTheme}
     >
-      <div className="theme-toggle-switch"></div>
-      <span className="theme-toggle-icon">
-        {theme === Theme.LIGHT ? <MoonIcon /> : <SunIcon />}
-      </span>
+      <div className={cls.switch}></div>
+      <span className={cls.icon}>{theme === Theme.LIGHT ? <MoonIcon /> : <SunIcon />}</span>
     </div>
   )
 }

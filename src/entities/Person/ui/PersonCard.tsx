@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import { Person } from '../model/types/Person'
+import cls from './PersonCard.module.scss'
 
 interface PersonCardProps {
   person: Person
@@ -7,15 +8,15 @@ interface PersonCardProps {
 
 export const PersonCard = ({ person }: PersonCardProps) => {
   return (
-    <Link to={`/persons/${person.id}`} className="person-card">
-      <div className="person-card-header">
-        <img src={person.avatar} alt={person.name} className="person-card-avatar" />
+    <Link to={`/persons/${person.id}`} className={cls.card}>
+      <div className={cls.header}>
+        <img src={person.avatar} alt={person.name} className={cls.avatar} />
         <div>
-          <h3 className="person-card-name">{person.name}</h3>
-          <p className="person-card-email">{person.email}</p>
+          <h3 className={cls.name}>{person.name}</h3>
+          <p className={cls.email}>{person.email}</p>
         </div>
       </div>
-      <div className="person-card-details">
+      <div className={cls.details}>
         <p>
           <strong>Телефон:</strong> {person.phone}
         </p>

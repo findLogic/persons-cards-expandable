@@ -10,6 +10,7 @@ import {
   selectSelectedCompany,
 } from '@/features/PersonListFilter/model/selectors'
 import { PersonListFilter } from '@/features/PersonListFilter'
+import cls from './PersonListPage.module.scss'
 
 export const PersonListPage = () => {
   const {
@@ -45,8 +46,8 @@ export const PersonListPage = () => {
   if (isLoading || isPending) {
     return (
       <div className="page">
-        <PersonListFilter />
-        <div className="persons-container">
+        <PersonListFilter disabled={true} />
+        <div className={cls.personsContainer}>
           {Array.from({ length: 10 }).map((_, index) => (
             <PersonCardSkeleton key={index} />
           ))}
@@ -55,10 +56,21 @@ export const PersonListPage = () => {
     )
   }
 
+  if (!filteredPersons.length) {
+    return (
+      <div className="page">
+        <PersonListFilter />
+        <div className={cls.noPersons}>
+          <p>Нет подходящих персон согласно Вашим запросам.</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="page">
       <PersonListFilter />
-      <div className="persons-container">
+      <div className={cls.personsContainer}>
         {filteredPersons.map((person) => (
           <PersonCard key={person.id} person={person} />
         ))}

@@ -1,26 +1,98 @@
-// Light theme
-:root,
-[data-theme='light'] {
-  --primary-bg: #ffffff;
-  --secondary-bg: #f5f5f5;
-  --text-color: #333333;
-  --nav-bg: #6200ee;
-  --nav-active: #bb86fc;
-  --nav-inactive: rgba(255, 255, 255, 0.7);
-  --card-bg: #ffffff;
-  --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --border-color: #e0e0e0;
+@use 'sass:color';
+
+$base-font: 16px;
+$space: 8px;
+$radius: 4px;
+$radius-lg: 8px;
+
+$light: (
+  primary-color: #3182ce,
+  primary-color-hover: #2c5282,
+  primary-color-active: #2b6cb0,
+  danger-color: #e53e3e,
+  secondary-bg: rgba(100, 100, 100, 0.1),
+  text-color: #2d3748,
+  text-on-primary: white,
+  text-secondary: #718096,
+  placeholder-color: #a0aec0,
+  bg-input: #edf2f7,
+  bg-dropdown: white,
+  bg-option-hover: #ebf8ff,
+  bg-tag: #ebf8ff,
+  bg-group-heading: #e2e8f0,
+  border-color: #e2e8f0,
+  icon-color: #718096,
+  icon-hover-color: #2d3748,
+  nav-bg: #6200ee,
+  nav-text: #cec2c2,
+  nav-active: #d4c7e6,
+  panel: #f3f4f6,
+  shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  skeleton-bg: #e0e0e0,
+);
+
+$dark: (
+  primary-color: #1f1e23,
+  primary-color-hover: #3182ce,
+  primary-color-active: #2b6cb0,
+  danger-color: #e53e3e,
+  secondary-bg: rgba(100, 100, 100, 0.1),
+  text-color: #e2e8f0,
+  text-on-primary: white,
+  text-secondary: #a0aec0,
+  placeholder-color: #a0aec0,
+  bg-input: #2d3748,
+  bg-dropdown: #2d3748,
+  bg-option-hover: #4a5568,
+  bg-tag: #4a5568,
+  bg-group-heading: #1a202c,
+
+  border-color: #4a5568,
+  icon-color: #a0aec0,
+  icon-hover-color: #e2e8f0,
+
+  nav-text: #cec2c2,
+
+  shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3),
+  primary: #6366f1,
+  secondary: #6200ee,
+
+  nav-bg: #1f1e23,
+  nav-active: #bb86fc,
+  panel: #334155,
+  surface: #1e293b,
+  accent: #f43f5e,
+  primary-bg: #29488f,
+  text-muted: #94a3b8,
+  skeleton-bg: #444,
+);
+
+@mixin theme($theme) {
+  @each $key, $value in $theme {
+    --#{$key}: #{$value};
+  }
 }
 
-// Dark theme
-[data-theme='dark'] {
-  --primary-bg: #121212;
-  --secondary-bg: #1e1e1e;
-  --text-color: #e0e0e0;
-  --nav-bg: #1f1f1f;
-  --nav-active: #bb86fc;
-  --nav-inactive: rgba(255, 255, 255, 0.5);
-  --card-bg: #1e1e1e;
-  --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  --border-color: #333333;
+body[data-theme='light'] {
+  @include theme($light);
+}
+
+body[data-theme='dark'] {
+  @include theme($dark);
+}
+
+@mixin skeleton-animation {
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
 }
