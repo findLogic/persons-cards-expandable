@@ -1,0 +1,136 @@
+.not-found-page {
+  // min-height: 100vh;
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--nav-bg);
+    color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .back-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .theme-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .not-found-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .error-illustration {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .error-icon {
+    font-size: 8rem;
+    font-weight: 700;
+    color: var(--error-color);
+    position: relative;
+    z-index: 1;
+    line-height: 1;
+  }
+
+  .error-shadow {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 20px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 70%);
+    border-radius: 50%;
+    filter: blur(5px);
+  }
+
+  .error-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+
+  .error-message {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.8;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+
+  .primary-button {
+    background-color: var(--nav-active);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: var(--nav-bg);
+    }
+  }
+
+  .secondary-button {
+    background-color: transparent;
+    color: var(--nav-active);
+    border: 2px solid var(--nav-active);
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: rgba(187, 134, 252, 0.1);
+    }
+  }
+}

@@ -1,29 +1,68 @@
 import { PersonCard } from '@/entities/Person'
-import { Person } from '@/entities/Person/model/Person'
-import { useEffect, useState } from 'react'
+import { PersonCardSkeleton } from '@/entities/Person/ui/PersonCardSkeleton'
+import { getPersons } from '@/shared/api/persons'
+import { useQuery } from '@tanstack/react-query'
+import { useMemo } from 'react'
+import { useSelector } from 'react-redux'
+import {
+  selectSearchTerm,
+  selectSelectedCities,
+  selectSelectedCompany,
+} from '@/features/PersonListFilter/model/selectors'
+import { PersonListFilter } from '@/features/PersonListFilter'
 
 export const PersonListPage = () => {
-  const [persons, setPersons] = useState<Person[]>([])
+  const {
+    data: persons = [],
+    isLoading,
+    isPending,
+  } = useQuery({
+    queryKey: ['persons'],
+    queryFn: getPersons,
+  })
 
-  useEffect(() => {
-    // Здесь может быть запрос к API
-    const mockUsers = Array.from({ length: 10 }, (_, i) => ({
-      id: i + 1,
-      name: `User ${i + 1}`,
-      email: `user${i + 1}@example.com`,
-      phone: `+1 (555) 555-${1000 + i}`,
-      company: `Company ${i + 1}`,
-      address: `${i + 100} Main St, City`,
-      avatar: `https://i.pravatar.cc/150?img=${i + 1}`,
-    }))
-    setPersons(mockUsers)
-  }, [])
+  const searchTerm = useSelector(selectSearchTerm)
+  const selectedCities = useSelector(selectSelectedCities)
+  const selectedCompany = useSelector(selectSelectedCompany)
+
+  const filteredPersons = useMemo(() => {
+    return persons.filter((person) => {
+      const matchesTerm =
+        !searchTerm ||
+        person.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        person.email.toLowerCase().includes(searchTerm.toLowerCase())
+
+      const matchesCity =
+        selectedCities.length === 0 ||
+        selectedCities.some((selectedCity) => person.address.city === selectedCity.label)
+
+      const matchesCompany = !selectedCompany || person.company === selectedCompany.label
+
+      return matchesTerm && matchesCity && matchesCompany
+    })
+  }, [persons, searchTerm, selectedCities, selectedCompany])
+
+  if (isLoading || isPending) {
+    return (
+      <div className="page">
+        <PersonListFilter />
+        <div className="persons-container">
+          {Array.from({ length: 10 }).map((_, index) => (
+            <PersonCardSkeleton key={index} />
+          ))}
+        </div>
+      </div>
+    )
+  }
 
   return (
-    <div className="persons-container">
-      {persons.map((person) => (
-        <PersonCard key={person.id} person={person} />
-      ))}
+    <div className="page">
+      <PersonListFilter />
+      <div className="persons-container">
+        {filteredPersons.map((person) => (
+          <PersonCard key={person.id} person={person} />
+        ))}
+      </div>
     </div>
   )
 }

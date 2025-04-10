@@ -11,10 +11,10 @@ export const Navbar: FC = memo(function Navbar() {
     <nav className="navbar">
       <div className="navbar-links">
         <AppLink to={routeConfig.main.path!} active={pathname === routeConfig.main.path}>
-          Profiles
+          Профили
         </AppLink>
         <AppLink to={routeConfig.about.path!} active={pathname === routeConfig.about.path}>
-          About Us
+          О проекте
         </AppLink>
       </div>
       <ThemeSwitcher />

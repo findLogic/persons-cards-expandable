@@ -17,4 +17,7 @@ export default defineConfig({
       '@': path.resolve(process.cwd(), './src'),
     },
   },
+  define: {
+    __API__: JSON.stringify('http://localhost:5000/api'),
+  },
 })

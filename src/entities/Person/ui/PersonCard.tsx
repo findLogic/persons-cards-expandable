@@ -1,4 +1,5 @@
-import { Person } from '../model/Person'
+import { Link } from 'react-router'
+import { Person } from '../model/types/Person'
 
 interface PersonCardProps {
   person: Person
@@ -6,7 +7,7 @@ interface PersonCardProps {
 
 export const PersonCard = ({ person }: PersonCardProps) => {
   return (
-    <div className="person-card">
+    <Link to={`/persons/${person.id}`} className="person-card">
       <div className="person-card-header">
         <img src={person.avatar} alt={person.name} className="person-card-avatar" />
         <div>
@@ -16,15 +17,16 @@ export const PersonCard = ({ person }: PersonCardProps) => {
       </div>
       <div className="person-card-details">
         <p>
-          <strong>Phone:</strong> {person.phone}
+          <strong>Телефон:</strong> {person.phone}
         </p>
         <p>
-          <strong>Company:</strong> {person.company}
+          <strong>Компания:</strong> {person.company}
         </p>
         <p>
-          <strong>Address:</strong> {person.address}
+          <strong>Адрес:</strong> {person.address.street}, {person.address.city},{' '}
+          {person.address.country}
         </p>
       </div>
-    </div>
+    </Link>
   )
 }

@@ -7,9 +7,7 @@ function App() {
     <div className="app">
       <Suspense fallback={<div>Loading...</div>}>
         <Navbar />
-        <div className="page">
-          <AppRouter />
-        </div>
+        <AppRouter />
       </Suspense>
     </div>
   )
